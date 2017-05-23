@@ -1,14 +1,13 @@
 package hello.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by nadia on 20.05.17.
  */
 //табличка направлений и связь с экзаменами
+@Entity
+@Table(name="DirectionsAll")
 public class Directions {
 
     @Id
@@ -21,8 +20,8 @@ public class Directions {
 
     private String profiles;
 
-    @ManyToOne
-    private ExamTest examsTest;
+//    @ManyToOne
+//    private ExamTest examsTest;
 
     public Directions() {
     }
@@ -60,11 +59,11 @@ public class Directions {
         this.profiles = profiles;
     }
 
-    public ExamTest getExamsTest() {
-        return examsTest;
-    }
-
-    public void setExamsTest(ExamTest examsTest) {
-        this.examsTest = examsTest;
-    }
+//    public ExamTest getExamsTest() {
+//        return examsTest;
+//    }
+//
+//    public void setExamsTest(ExamTest examsTest) {
+//        this.examsTest = examsTest;
+//    }
 }
