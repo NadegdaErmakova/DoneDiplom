@@ -1,6 +1,6 @@
 package hello.controller;
 
-import hello.model.ExamTest;
+import hello.model.Exam;
 import hello.repository.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class ExamController {
     @RequestMapping("/list")
     public
     @ResponseBody
-    Iterable<ExamTest> getAllUsers() {
+    Iterable<Exam> getAllUsers() {
         // This returns a JSON or XML with the users
         return examRepository.findAll();
     }
@@ -39,7 +39,7 @@ public class ExamController {
     @ResponseBody
     String add(@RequestParam(value = "exname", required = true) String name,
                Model model) {
-        ExamTest ex = new ExamTest();
+        Exam ex = new Exam();
         ex.setExamName(name);
         examRepository.save(ex);
         return "Saved";
@@ -49,12 +49,12 @@ public class ExamController {
 
     @RequestMapping(value="/exam", method= RequestMethod.GET)
     public String greetingForm(Model model) {
-        model.addAttribute("exam", new ExamTest());
+        model.addAttribute("exam", new Exam());
         return "exam";
     }
 
     @RequestMapping(value="/exam", method=RequestMethod.POST)
-    public String greetingSubmit(@ModelAttribute ExamTest ex, Model model) {
+    public String greetingSubmit(@ModelAttribute Exam ex, Model model) {
         examRepository.save(ex);
         model.addAttribute("exam", ex);
         return "result";
