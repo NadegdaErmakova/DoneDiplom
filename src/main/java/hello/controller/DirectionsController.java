@@ -1,7 +1,6 @@
 package hello.controller;
 
 import hello.model.Directions;
-import hello.model.ExamTest;
 import hello.repository.DirectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

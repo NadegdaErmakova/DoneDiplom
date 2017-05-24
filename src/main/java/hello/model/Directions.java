@@ -1,6 +1,8 @@
 package hello.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by nadia on 20.05.17.
@@ -20,11 +22,12 @@ public class Directions {
 
     private String profiles;
 
-//    @ManyToOne
-//    private ExamTest examsTest;
+    @ManyToMany
+    @JoinTable(name = "EXAMS_DIRECTION",
+            joinColumns = { @JoinColumn(name = "DIRECTION_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "EXAM_ID") })
+    private Set<Exam> exams = new HashSet<Exam>();
 
-    public Directions() {
-    }
 
 
     public Long getId() {
@@ -59,11 +62,11 @@ public class Directions {
         this.profiles = profiles;
     }
 
-//    public ExamTest getExamsTest() {
-//        return examsTest;
-//    }
-//
-//    public void setExamsTest(ExamTest examsTest) {
-//        this.examsTest = examsTest;
-//    }
+    public Set<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(Set<Exam> exams) {
+        this.exams = exams;
+    }
 }
