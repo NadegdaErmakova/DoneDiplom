@@ -12,24 +12,26 @@ import java.util.Set;
 @Table(name="DirectionsAll")
 public class Directions {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Long cod;
-
     private String nameDirections;
-
     private String profiles;
 
-    @ManyToMany
-    @JoinTable(name = "EXAMS_DIRECTION",
-            joinColumns = { @JoinColumn(name = "DIRECTION_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "EXAM_ID") })
-    private Set<Exam> exams = new HashSet<Exam>();
+    private Set<Exam> exams = new HashSet<>(0);
 
+    public Directions(){
+    }
 
+    public Directions(Long cod, String nameDirections, String profiles, Set<Exam> exams) {
+        super();
+        this.cod = cod;
+        this.nameDirections = nameDirections;
+        this.profiles = profiles;
+        this.exams = exams;
+    }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -38,6 +40,7 @@ public class Directions {
         this.id = id;
     }
 
+    @Column(name = "cod")
     public Long getCod() {
         return cod;
     }
@@ -46,6 +49,7 @@ public class Directions {
         this.cod = cod;
     }
 
+    @Column(name = "nameDirections")
     public String getNameDirections() {
         return nameDirections;
     }
@@ -54,6 +58,7 @@ public class Directions {
         this.nameDirections = nameDirections;
     }
 
+    @Column(name = "profiles")
     public String getProfiles() {
         return profiles;
     }
@@ -62,11 +67,24 @@ public class Directions {
         this.profiles = profiles;
     }
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "direction_exam",
+            joinColumns = { @JoinColumn(name = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "exam_id") })
     public Set<Exam> getExams() {
-        return exams;
+        return this.exams;
     }
 
     public void setExams(Set<Exam> exams) {
         this.exams = exams;
+    }
+
+    public boolean hasExam(Exam exam) {
+        for (Exam directionsExam: getExams()) {
+            if (directionsExam.getExams() == exam.getExams()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

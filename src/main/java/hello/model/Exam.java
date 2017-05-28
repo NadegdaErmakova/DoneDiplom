@@ -1,6 +1,8 @@
 package hello.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by jskonst on 13.05.17.
@@ -10,19 +12,22 @@ import javax.persistence.*;
 @Entity
 @Table(name="ExamTestDemo")
 public class Exam {
-        @Id
-        @GeneratedValue(strategy= GenerationType.AUTO)
-        private Integer id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long examid;
 
-        @Column(name="type")
-        private String examName;
+    @Column(name="examName")
+    private String examName;
 
-    public Integer getId() {
-        return id;
+    public Exam() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Exam(String examName) {
+        this.examName = examName;
+    }
+
+    public long getExamid() {
+        return examid;
     }
 
     public String getExamName() {
@@ -32,4 +37,16 @@ public class Exam {
     public void setExamName(String examName) {
         this.examName = examName;
     }
+
+    @ManyToMany(mappedBy = "exams")
+    private Set<Directions> directionses;
+
+    public Set<Directions> getDirectionses() {
+        return directionses;
+    }
+
+    public void setDirectionses(Set<Directions> directionses) {
+        this.directionses = directionses;
+    }
+
 }
