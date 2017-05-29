@@ -13,21 +13,24 @@ import java.util.Set;
 public class Directions {
 
     private Long id;
-    private Long cod;
+    private String cod;
     private String nameDirections;
-    private String profiles;
+//    private String profiles;
+    private int numOchn;
 
     private Set<Exam> exams = new HashSet<>(0);
 
     public Directions(){
     }
 
-    public Directions(Long cod, String nameDirections, String profiles, Set<Exam> exams) {
+    public Directions(String cod, String nameDirections, int numOchn) {//}, String profiles, Set<Exam> exams) {
         super();
         this.cod = cod;
         this.nameDirections = nameDirections;
-        this.profiles = profiles;
-        this.exams = exams;
+        this.numOchn = numOchn;
+
+//        this.profiles = profiles;
+//        this.exams = exams;
     }
 
     @Id
@@ -41,11 +44,11 @@ public class Directions {
     }
 
     @Column(name = "cod")
-    public Long getCod() {
+    public String getCod() {
         return cod;
     }
 
-    public void setCod(Long cod) {
+    public void setCod(String cod) {
         this.cod = cod;
     }
 
@@ -58,14 +61,25 @@ public class Directions {
         this.nameDirections = nameDirections;
     }
 
-    @Column(name = "profiles")
-    public String getProfiles() {
-        return profiles;
+    @Column(name = "numOchn")
+    public int getNumOchn() {
+        return numOchn;
     }
 
-    public void setProfiles(String profiles) {
-        this.profiles = profiles;
+    public void setNumOchn(int numOchn) {
+        this.numOchn = numOchn;
     }
+
+    //    @Column(name = "profiles")
+//    public String getProfiles() {
+//        return profiles;
+//    }
+//
+//    public void setProfiles(String profiles) {
+//        this.profiles = profiles;
+//    }
+
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "direction_exam",
@@ -81,7 +95,7 @@ public class Directions {
 
     public boolean hasExam(Exam exam) {
         for (Exam directionsExam: getExams()) {
-            if (directionsExam.getExams() == exam.getExams()) {
+            if (directionsExam.getExamid() == exam.getExamid()) {
                 return true;
             }
         }

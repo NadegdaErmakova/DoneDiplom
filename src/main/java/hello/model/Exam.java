@@ -10,7 +10,7 @@ import java.util.Set;
 //вступительные испытания
 
 @Entity
-@Table(name="ExamTestDemo")
+//@Table(name="ExamTestDemo")
 public class Exam {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
