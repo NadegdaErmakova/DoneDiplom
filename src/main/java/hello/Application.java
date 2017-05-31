@@ -2,6 +2,7 @@ package hello;
 
 import hello.model.Directions;
 import hello.model.Exam;
+import hello.model.ScoresExams;
 import hello.repository.DirectionsRepository;
 import hello.repository.ExamRepository;
 import org.slf4j.Logger;
@@ -12,26 +13,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by jskonst on 14.03.17.
+ * Created by nadia on 14.03.17.
  */
 @ComponentScan
 @EnableAutoConfiguration
 
 public class Application {
-    @Autowired
-    private UserRepository userRepository;
-
+//    @Autowired
+//    private UserRepository userRepository;
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
 
     @Bean
     public CommandLineRunner demo(CustomerRepository repository) {
@@ -42,12 +42,12 @@ public class Application {
             repository.save(new Customer("Kim", "Bauer"));
             repository.save(new Customer("David", "Palmer"));
             Customer spec = new Customer("Michelle", "Dessler");
-            User n = new User();
-            n.setName("TestUsr");
-            n.setEmail("Email");
-            userRepository.save(n);
-            spec.setUser(n);
-            repository.save(spec);
+//            User n = new User();
+//            n.setName("TestUsr");
+//            n.setEmail("Email");
+//            userRepository.save(n);
+//            spec.setUser(n);
+//            repository.save(spec);
             // fetch all customers
             log.info("Customers found with findAll():");
             log.info("-------------------------------");
@@ -120,6 +120,40 @@ public class Application {
             directionsRepository.save(directions1);
         };
     }
-//файл связанный с безопасностью пока не создавала
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private ExamRepository examRepository;
+
+//    Это вообще надо? Мы не можем узнать кто придет! Тем более часть пользователей выше прописана... крч туту странности происходят
+//    @Override
+//    @Transactional
+//    public void run(String... strings) throws Exception {
+//        Customer customerA = new Customer();
+//
+//        Exam examA = new Exam();
+//
+//        ScoresExams scoresExams = new ScoresExams();
+//        scoresExams.setCustomer(customerA);
+//        scoresExams.setExam(examA);
+//        scoresExams.setScore(();
+//        customerA.getScoresExamses().add(scoresExams);
+//
+//        ExamRepository.save(examA);
+//        customerRepository.save(customerA);
+//
+//        // test
+//        System.out.println(customerA.getScoresExamses().size());
+//
+//        // update
+//        customerA.getScoresExamses().remove(scoresExams);
+//        customerRepository.save(customerA);
+//
+//        // test
+//        System.out.println(customerA.getScoresExamses().size());
+//    }
+}
 
 }

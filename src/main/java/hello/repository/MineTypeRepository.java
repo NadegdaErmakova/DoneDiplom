@@ -4,7 +4,6 @@ package hello.repository;
  * Created by jskonst on 05.04.17.
  */
 
-import hello.User;
 import hello.model.MineTypes;
 import org.springframework.data.repository.CrudRepository;
 

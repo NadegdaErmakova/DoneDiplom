@@ -1,7 +1,5 @@
 package hello.controller;
 
-import hello.User;
-import hello.UserRepository;
 import hello.model.MineTypes;
 import hello.repository.MineTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

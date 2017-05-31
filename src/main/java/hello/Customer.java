@@ -1,23 +1,24 @@
 package hello;
 
+import hello.model.ScoresExams;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Created by jskonst on 05.04.17.
+ * Created by nadia on  05.04.17.
  */
 @Entity
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private Long customer_id;
 
     private String firstName;
     private String lastName;
+    private Set<ScoresExams> scoresExamses = new HashSet<>(0);
 
-    @ManyToOne
-    private User user;
-
+    //а почему именно protected
     protected Customer() {}
 
     public Customer(String firstName, String lastName) {
@@ -28,17 +29,20 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Customer[customer_id=%d, firstName='%s', lastName='%s']",
+                customer_id, firstName, lastName);
     }
 
-    public Long getId() {
-        return id;
+    public Long getCustomer_id() {
+        return customer_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
     }
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
 
     public String getFirstName() {
         return firstName;
@@ -56,11 +60,14 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public User getUser() {
-        return user;
+    //связь с баллами и экзаменами
+    @OneToMany(mappedBy = "Customer",cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<ScoresExams>   getScoresExamses() {
+        return scoresExamses;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setScoresExamses(Set<ScoresExams> scoresExamses) {
+        this.scoresExamses = scoresExamses;
     }
-}
+
+  }

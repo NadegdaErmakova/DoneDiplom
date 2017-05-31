@@ -12,12 +12,11 @@ import java.util.Set;
 @Entity
 //@Table(name="ExamTestDemo")
 public class Exam {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long examid;
 
-    @Column(name="examName")
+    private long examid;
     private String examName;
+
+    private Set<ScoresExams> scoresExamses = new HashSet<>(0);;
 
     public Exam() {
     }
@@ -26,10 +25,17 @@ public class Exam {
         this.examName = examName;
     }
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public long getExamid() {
         return examid;
     }
 
+    public void setExamid(long examid) {
+        this.examid = examid;
+    }
+
+    @Column(name="examName")
     public String getExamName() {
         return examName;
     }
@@ -49,4 +55,13 @@ public class Exam {
         this.directionses = directionses;
     }
 
+    //связь с абитуриентом и его баллами
+    @OneToMany(mappedBy = "exam")
+    public Set<ScoresExams> getScoresExamses() {
+        return scoresExamses;
+    }
+
+    public void setScoresExamses(Set<ScoresExams> scoresExamses) {
+        this.scoresExamses = scoresExamses;
+    }
 }
