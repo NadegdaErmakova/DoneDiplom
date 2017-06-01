@@ -23,6 +23,11 @@ public class DirectionsController {
     @Autowired
     private ExamRepository examRepository;
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/directionses")
     public String index(Model model) {
         List<Directions> directionses = (List<Directions>) directionsRepository.findAll();

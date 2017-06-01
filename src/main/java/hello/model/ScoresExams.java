@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 //ПОЧЕМУУУУУУУУУУУУ?! ЗА ЧТОООО, ENTITY?
 @Entity
 //Table а ты то что?)
-@Table( name="ScoresExams")
+//@Table( name="ScoresExams")
 public class ScoresExams {
     private Customer customer;
     private Exam exam;
