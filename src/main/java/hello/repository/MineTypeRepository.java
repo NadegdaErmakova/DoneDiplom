@@ -1,7 +1,7 @@
 package hello.repository;
 
 /**
- * Created by jskonst on 05.04.17.
+ * Created by nadia on 05.04.17.
  */
 
 import hello.model.MineTypes;

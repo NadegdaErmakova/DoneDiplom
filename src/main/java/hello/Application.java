@@ -1,8 +1,9 @@
 package hello;
 
+import hello.model.Customer;
 import hello.model.Directions;
 import hello.model.Exam;
-import hello.model.ScoresExams;
+import hello.repository.CustomerRepository;
 import hello.repository.DirectionsRepository;
 import hello.repository.ExamRepository;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;

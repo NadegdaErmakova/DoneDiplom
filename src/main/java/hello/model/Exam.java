@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by jskonst on 13.05.17.
+ * Created by nadia on 13.05.17.
  */
 //вступительные испытания
 

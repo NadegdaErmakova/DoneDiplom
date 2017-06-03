@@ -3,7 +3,7 @@ package hello.model;
 import javax.persistence.*;
 
 /**
- * Created by jskonst on 19.04.17.
+ * Created by nadia on 19.04.17.
  */
 @Entity
 @Table(name="MineTypesAll")

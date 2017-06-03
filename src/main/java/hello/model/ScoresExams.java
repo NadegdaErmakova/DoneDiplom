@@ -1,8 +1,6 @@
 package hello.model;
 
-import hello.Customer;
 import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;

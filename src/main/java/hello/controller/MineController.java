@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by jskonst on 05.04.17.
+ * Created by nadia on 05.04.17.
  */
 @Controller    // This means that this class is a Controller
 @RequestMapping("/mine") // This means URL's start with /demo (after Application path)
